@@ -19,6 +19,7 @@ public class TechJobs {
         columnChoices.put("location", "Location");
         columnChoices.put("position type", "Position Type");
         columnChoices.put("all", "All");
+        //columnChoices.put("name", "Name"); ??
 
         // Top-level menu options
         HashMap<String, String> actionChoices = new HashMap<>();
@@ -55,7 +56,7 @@ public class TechJobs {
             } else { // choice is "search"
 
                 // How does the user want to search (e.g. by skill or employer)
-                String searchField = getUserSelection("Search by:", columnChoices);
+                String searchField = getUserSelection("Search by: ", columnChoices); // added space //
 
                 // What is their search term?
                 System.out.println("\nSearch term:");
@@ -68,7 +69,8 @@ public class TechJobs {
                 }
             }
         }
-    }
+
+    } //main ending bracket
 
     // ﻿Returns the key of the selected item from the choices Dictionary
     private static String getUserSelection(String menuHeader, HashMap<String, String> choices) {
@@ -91,7 +93,7 @@ public class TechJobs {
 
             // Print available choices
             for (int j = 0; j < choiceKeys.length; j++) {
-                System.out.println("" + j + " - " + choices.get(choiceKeys[j]));
+                System.out.println("" + j + " - " + choices.get(choiceKeys[j]));  //
             }
 
             if (in.hasNextInt()) {
@@ -107,7 +109,7 @@ public class TechJobs {
 
             // Validate user's input
             if (choiceIdx < 0 || choiceIdx >= choiceKeys.length) {
-                System.out.println("Invalid choice. Try again.");
+                System.out.println("\nInvalid choice. Try again."); //
             } else {
                 validChoice = true;
             }
@@ -115,11 +117,34 @@ public class TechJobs {
         } while(!validChoice);
 
         return choiceKeys[choiceIdx];
-    }
+
+    } //getUserSelection
 
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
+//        for (Map.Entry<String, String> job : someJobs.entrySet()) {
+//            System.out.println(entryCount.getKey() + " : " + entryCount.getValue()); //from the created HashMap (of
+//            // user's response phrase/quote, printing each key/value pair (letter : count) to newline
+//        }
+//        System.out.println("\n*****" + );
 
-        System.out.println("printJobs is not implemented yet");
-    }
-}
+        if (someJobs.isEmpty()) {
+            System.out.println("No Results"); // auto-grader doesn't like "\n" // "\nNo Results" //
+        } else {
+            for (int i = 0; i < someJobs.size(); i++) {
+                HashMap<String, String> job = someJobs.get(i);
+                if (i > 0) {
+                    System.out.println(""); // ****** // auto-grader doesn't like this
+                }
+                System.out.println("\n*****"); //
+                System.out.println("position type: "+ job.get("position type"));
+                System.out.println("name: "+ job.get("name"));
+                System.out.println("employer: "+ job.get("employer"));
+                System.out.println("location: "+ job.get("location"));
+                System.out.println("core competency: "+ job.get("core competency"));
+                System.out.println("*****");
+            }
+        }
+    } //printJobs
+
+} //techJobs

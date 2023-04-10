@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
+
 
 /**
  * Created by LaunchCode
@@ -37,13 +39,13 @@ public class JobData {
         for (HashMap<String, String> row : allJobs) {
             String aValue = row.get(field);
 
-            if (!values.contains(aValue)) {
-                values.add(aValue);
+            if (!values.contains(aValue)) {  //
+                values.add(aValue); //
             }
         }
 
         // Bonus mission: sort the results
-        Collections.sort(values);
+        Collections.sort(values); //job --> alphabetically
 
         return values;
     }
@@ -55,6 +57,7 @@ public class JobData {
 
         // Bonus mission; normal version returns allJobs
         return new ArrayList<>(allJobs);
+
     }
 
     /**
@@ -79,13 +82,14 @@ public class JobData {
 
             String aValue = row.get(column);
 
-            if (aValue.contains(value)) {
+            if (aValue.toLowerCase().contains(value.toLowerCase())) {  //BONUS: toLowerCase()
                 jobs.add(row);
             }
         }
-
+        //Collections.sort(jobs); //BONUS
         return jobs;
-    }
+
+    } //end findByColumnAndValue
 
     /**
      * Search all columns for the given term
@@ -98,9 +102,25 @@ public class JobData {
         // load data, if not already loaded
         loadData();
 
-        // TODO - implement this method
-        return null;
-    }
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+
+        for (HashMap<String, String> row : allJobs) {
+            Set<String> keySet = row.keySet(); //
+            ArrayList<String> listOfKeys = new ArrayList<>(keySet);
+
+            for (String listOfKey : listOfKeys) {
+                String aValue = row.get(listOfKey);
+
+                if (aValue.toLowerCase().contains(value.toLowerCase())) {  //BONUS: toLowerCase()
+                    jobs.add(row);
+                    break;
+                }
+            }
+        }
+        //TODO - implement this method
+        return jobs; //null ?
+
+    } //end fineByValue
 
     /**
      * Read in data from a CSV file and store it in a list
@@ -141,6 +161,6 @@ public class JobData {
             System.out.println("Failed to load job data");
             e.printStackTrace();
         }
-    }
+    } //end loadData
 
-}
+} //ending bracket
