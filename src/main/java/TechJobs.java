@@ -134,7 +134,7 @@ public class TechJobs {
             for (int i = 0; i < someJobs.size(); i++) {
                 HashMap<String, String> job = someJobs.get(i);
                 if (i > 0) {
-                    System.out.println(""); // ****** // auto-grader doesn't like this
+                    //System.out.println(""); // ****** // auto-grader doesn't like this
                 }
                 System.out.println("\n*****"); //
                 System.out.println("position type: "+ job.get("position type"));

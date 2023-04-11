@@ -27,7 +27,7 @@ public class JobData {
      * without duplicates, for a given column.
      *
      * @param field The column to retrieve values from
-     * @return List of all of the values of the given field
+     * @return List of, all of the values, of the given field
      */
     public static ArrayList<String> findAll(String field) {
 
@@ -82,7 +82,7 @@ public class JobData {
 
             String aValue = row.get(column);
 
-            if (aValue.toLowerCase().contains(value.toLowerCase())) {  //BONUS: toLowerCase()
+            if (aValue.toLowerCase().contains(value.toLowerCase())) {  //toLowerCase()
                 jobs.add(row);
             }
         }
@@ -111,7 +111,7 @@ public class JobData {
             for (String listOfKey : listOfKeys) {
                 String aValue = row.get(listOfKey);
 
-                if (aValue.toLowerCase().contains(value.toLowerCase())) {  //BONUS: toLowerCase()
+                if (aValue.toLowerCase().contains(value.toLowerCase())) {  //toLowerCase()
                     jobs.add(row);
                     break;
                 }
@@ -138,7 +138,7 @@ public class JobData {
             Reader in = new FileReader(DATA_FILE);
             CSVParser parser = CSVFormat.RFC4180.withFirstRecordAsHeader().parse(in);
             List<CSVRecord> records = parser.getRecords();
-            Integer numberOfColumns = records.get(0).size();
+            Integer numberOfColumns = records.get(0).size();  //should type be primitive -> int ?
             String[] headers = parser.getHeaderMap().keySet().toArray(new String[numberOfColumns]);
 
             allJobs = new ArrayList<>();
