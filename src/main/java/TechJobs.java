@@ -56,10 +56,10 @@ public class TechJobs {
             } else { // choice is "search"
 
                 // How does the user want to search (e.g. by skill or employer)
-                String searchField = getUserSelection("Search by: ", columnChoices); // added space //
+                String searchField = getUserSelection("Search by:", columnChoices); //removed added space //
 
                 // What is their search term?
-                System.out.println("\nSearch term:");
+                System.out.println("\nSearch term:"); //\n
                 String searchTerm = in.nextLine();
 
                 if (searchField.equals("all")) {
@@ -93,7 +93,7 @@ public class TechJobs {
 
             // Print available choices
             for (int j = 0; j < choiceKeys.length; j++) {
-                System.out.println("" + j + " - " + choices.get(choiceKeys[j]));  //
+                System.out.println("" + j + " - " + choices.get(choiceKeys[j]));  //empty string??
             }
 
             if (in.hasNextInt()) {
@@ -128,21 +128,22 @@ public class TechJobs {
 //        }
 //        System.out.println("\n*****" + );
 
-        if (someJobs.isEmpty()) {
-            System.out.println("No Results"); // auto-grader doesn't like "\n" // "\nNo Results" //
+        if (someJobs.isEmpty()) { //www.w3schools.com/java/ref_string_isempty.asp//returns true if the string is empty (length() is 0), and false if not
+            System.out.print("No Results"); // auto-grader doesn't like "\nNo Results" //testPrintJobsNoResult//
         } else {
             for (int i = 0; i < someJobs.size(); i++) {
                 HashMap<String, String> job = someJobs.get(i);
-                if (i > 0) {
-                    //System.out.println(""); // ****** // auto-grader doesn't like this
-                }
-                System.out.println("\n*****"); //
-                System.out.println("position type: "+ job.get("position type"));
-                System.out.println("name: "+ job.get("name"));
-                System.out.println("employer: "+ job.get("employer"));
-                System.out.println("location: "+ job.get("location"));
-                System.out.println("core competency: "+ job.get("core competency"));
-                System.out.println("*****");
+//                if (i > 0) {
+//                    System.out.println(); // *** // auto-grader doesn't like this
+//                }
+                    System.out.println("\n*****"); //
+                    System.out.println("position type: " + job.get("position type"));
+                    System.out.println("name: " + job.get("name"));
+                    System.out.println("employer: " + job.get("employer"));
+                    System.out.println("location: " + job.get("location"));
+                    System.out.println("core competency: " + job.get("core competency"));
+                    System.out.println("*****");
+                //}
             }
         }
     } //printJobs

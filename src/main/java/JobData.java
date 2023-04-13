@@ -97,7 +97,7 @@ public class JobData {
      * @param value The search term to look for
      * @return      List of all jobs with at least one field containing the value
      */
-    public static ArrayList<HashMap<String, String>> findByValue(String value) {
+    public static ArrayList<HashMap<String, String>> findByValue(String value) { //
 
         // load data, if not already loaded
         loadData();
@@ -105,10 +105,10 @@ public class JobData {
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
 
         for (HashMap<String, String> row : allJobs) {
-            Set<String> keySet = row.keySet(); //
+            Set<String> keySet = row.keySet();   //
             ArrayList<String> listOfKeys = new ArrayList<>(keySet);
 
-            for (String listOfKey : listOfKeys) {
+            for (String listOfKey : listOfKeys) {  //duplicate jobs//
                 String aValue = row.get(listOfKey);
 
                 if (aValue.toLowerCase().contains(value.toLowerCase())) {  //toLowerCase()
