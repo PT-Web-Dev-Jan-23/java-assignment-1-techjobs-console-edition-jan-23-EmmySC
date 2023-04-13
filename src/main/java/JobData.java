@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
+
 
 /**
  * Created by LaunchCode
@@ -25,7 +27,7 @@ public class JobData {
      * without duplicates, for a given column.
      *
      * @param field The column to retrieve values from
-     * @return List of all of the values of the given field
+     * @return List of, all of the values, of the given field
      */
     public static ArrayList<String> findAll(String field) {
 
@@ -37,13 +39,13 @@ public class JobData {
         for (HashMap<String, String> row : allJobs) {
             String aValue = row.get(field);
 
-            if (!values.contains(aValue)) {
-                values.add(aValue);
+            if (!values.contains(aValue)) {  //
+                values.add(aValue); //
             }
         }
 
         // Bonus mission: sort the results
-        Collections.sort(values);
+        Collections.sort(values); //job --> alphabetically
 
         return values;
     }
@@ -55,6 +57,7 @@ public class JobData {
 
         // Bonus mission; normal version returns allJobs
         return new ArrayList<>(allJobs);
+
     }
 
     /**
@@ -79,13 +82,14 @@ public class JobData {
 
             String aValue = row.get(column);
 
-            if (aValue.contains(value)) {
+            if (aValue.toLowerCase().contains(value.toLowerCase())) {  //toLowerCase()
                 jobs.add(row);
             }
         }
-
+        //Collections.sort(jobs); //BONUS
         return jobs;
-    }
+
+    } //end findByColumnAndValue
 
     /**
      * Search all columns for the given term
@@ -93,14 +97,30 @@ public class JobData {
      * @param value The search term to look for
      * @return      List of all jobs with at least one field containing the value
      */
-    public static ArrayList<HashMap<String, String>> findByValue(String value) {
+    public static ArrayList<HashMap<String, String>> findByValue(String value) { //
 
         // load data, if not already loaded
         loadData();
 
-        // TODO - implement this method
-        return null;
-    }
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+
+        for (HashMap<String, String> row : allJobs) {
+            Set<String> keySet = row.keySet();   //
+            ArrayList<String> listOfKeys = new ArrayList<>(keySet);
+
+            for (String listOfKey : listOfKeys) {  //duplicate jobs//
+                String aValue = row.get(listOfKey);
+
+                if (aValue.toLowerCase().contains(value.toLowerCase())) {  //toLowerCase()
+                    jobs.add(row);
+                    break;
+                }
+            }
+        }
+        //TODO - implement this method
+        return jobs; //null ?
+
+    } //end fineByValue
 
     /**
      * Read in data from a CSV file and store it in a list
@@ -118,7 +138,7 @@ public class JobData {
             Reader in = new FileReader(DATA_FILE);
             CSVParser parser = CSVFormat.RFC4180.withFirstRecordAsHeader().parse(in);
             List<CSVRecord> records = parser.getRecords();
-            Integer numberOfColumns = records.get(0).size();
+            Integer numberOfColumns = records.get(0).size();  //should type be primitive -> int ?
             String[] headers = parser.getHeaderMap().keySet().toArray(new String[numberOfColumns]);
 
             allJobs = new ArrayList<>();
@@ -141,6 +161,6 @@ public class JobData {
             System.out.println("Failed to load job data");
             e.printStackTrace();
         }
-    }
+    } //end loadData
 
-}
+} //ending bracket
